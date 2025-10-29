@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Personal Profile</title>
+    <!-- Link to Poppins font (Implied by CSS [1]) -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="#hero">CM</a>
+            </div>
+            
+            <div class="nav-menu">
+                <ul class="nav-links">
+                    <li><a href="#hero" class="nav-link active"><i class="fas fa-home"></i><span>Home</span></a></li>
+                    <li><a href="#about" class="nav-link"><i class="fas fa-user"></i><span>About</span></a></li>
+                    <li><a href="#projects" class="nav-link"><i class="fas fa-code"></i><span>Projects</span></a></li>
+                    <li><a href="#interests" class="nav-link"><i class="fas fa-heart"></i><span>Interests</span></a></li>
+                    <li><a href="#contact" class="nav-link"><i class="fas fa-envelope"></i><span>Contact</span></a></li>
+                </ul>
+            </div>
+
+            <div class="nav-actions">
+                <button class="theme-toggle" aria-label="Toggle theme">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                    <span class="hamburger"></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero">
+        <div class="diagonal-split"></div>
+        <div class="hero-content">
+            <h1>Welcome to My Profile</h1>
+            <p>Web Developer | Creative Thinker | Problem Solver</p>
+            <!-- Content for margin-bottom implied here [8] -->
+        </div>
+        <div class="hero-image">
+            <img src="assets/infinite.png" alt="Profile Picture" class="hero-profile-pic">
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <h2>About Me</h2>
+        <div class="about-container">
+            <div class="about-profile">
+                <div class="profile-card">
+                    <img src="images/me.jpg" alt="Profile Picture" class="profile-pic">
+                    <div class="profile-info">
+                        <h3>Chungu Musaka</h3>
+                        <p class="title">Computer Science & Systems Engineering Graduate</p>
+                        <div class="social-links">
+                            <a href="https://github.com/Billzyo" class="social-link"><i class="fab fa-github"></i></a>
+                            <a href="https://www.linkedin.com/in/chungu-musaka-396b13269/" class="social-link"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                        </div>
+                    </div>  
+                </div>
+            </div>
+            
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Hello! 👋</h3>
+                    <p class="intro-text">I'm a passionate and hands-on engineer who loves exploring the intersection of hardware and software, creating smart systems that solve real problems.</p>
+                    
+                    <div class="skills-section">
+                        <h4>Technical Expertise</h4>
+                        <div class="skill-categories">
+                            <div class="skill-category">
+                                <h5>💻 Programming</h5>
+                                <div class="skill-tags">
+                                    <span class="skill-tag">Python</span>
+                                    <span class="skill-tag">C++</span>
+                                    <span class="skill-tag">JavaScript</span>
+                                    <span class="skill-tag">PHP</span>
+                                    <span class="skill-tag">HTML/CSS</span>
+                                </div>
+                            </div>
+                            <div class="skill-category">
+                                <h5>🛠 Frameworks</h5>
+                                <div class="skill-tags">
+                                    <span class="skill-tag">React</span>
+                                    <span class="skill-tag">Node.js</span>
+                                    <span class="skill-tag">Laravel</span>
+                                    <span class="skill-tag">Django</span>
+                                </div>
+                            </div>
+                            <div class="skill-category">
+                                <h5>⚡ Other Skills</h5>
+                                <div class="skill-tags">
+                                    <span class="skill-tag">Git</span>
+                                    <span class="skill-tag">AWS</span>
+                                    <span class="skill-tag">Arduino</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="experience-section">
+                        <h4>Quick Facts</h4>
+                        <div class="facts-grid">
+                            <div class="fact-item">
+                                <span class="fact-number">3+</span>
+                                <span class="fact-label">Months Experience</span>
+                            </div>
+                            <div class="fact-item">
+                                <span class="fact-number">5+</span>
+                                <span class="fact-label">Projects Completed</span>
+                            </div>
+                            <div class="fact-item">
+                                <span class="fact-number">2+</span>
+                                <span class="fact-label">Happy Clients</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <h2>Featured Projects</h2>
+        <div class="project-filters">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="web">Web Dev</button>
+            <button class="filter-btn" data-filter="iot">IoT</button>
+            <button class="filter-btn" data-filter="ml">Machine Learning</button>
+        </div>
+        <div class="projects-grid">
+            <article class="project-card">
+                <div class="project-content">
+                    <span class="project-category">Web Development</span>
+                    <h3>Point of Sale System</h3>
+                    <p>A modern Point of Sale solution built with custom PHP MVC Framework, featuring real-time inventory management.</p>
+                    <div class="project-tech-stack">
+                        <span>PHP</span>
+                        <span>AJAX</span>
+                        <span>MySQL</span>
+                    </div>
+                </div>
+                <div class="project-links">
+                    <a href="#" class="project-link">View Project →</a>
+                </div>
+            </article>
+
+            <article class="project-card">
+                <div class="project-content">
+                    <span class="project-category">IoT</span>
+                    <h3>Smart Home System</h3>
+                    <p>An IoT-based home automation system using Arduino and Raspberry Pi for remote monitoring and control.</p>
+                    <div class="project-tech-stack">
+                        <span>Python</span>
+                        <span>C++</span>
+                        <span>Arduino</span>
+                    </div>
+                </div>
+                <div class="project-links">
+                    <a href="#" class="project-link">View Project →</a>
+                </div>
+            </article>
+
+            <article class="project-card">
+                <div class="project-content">
+                    <span class="project-category">Machine Learning</span>
+                    <h3>Image Recognition API</h3>
+                    <p>A deep learning model deployed as an API for real-time image recognition and classification.</p>
+                    <div class="project-tech-stack">
+                        <span>Python</span>
+                        <span>TensorFlow</span>
+                        <span>Flask</span>
+                    </div>
+                </div>
+                <div class="project-links">
+                    <a href="#" class="project-link">View Project →</a>
+                </div>
+            </article>
+        </div>
+    
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <h2>My Projects</h2>
+        <div class="projects-grid">
+            <!-- Example Project Card -->
+            <div class="project-card">
+                <h3>Project Title 1</h3>
+                <p>Description of Project 1.</p>
+            </div>
+            <div class="project-card">
+                <h3>Project Title 2</h3>
+                <p>Description of Project 2.</p>
+            </div>
+            <!-- Add more project-card elements as needed -->
+        </div>
+    </section>
+
+    <!-- Interests Section -->
+    <section id="interests">
+        <h2>My Interests</h2>
+        <div class="interests-container">
+            <div class="interest-item">
+                <p>Interest 1</p>
+            </div>
+            <div class="interest-item">
+                <p>Interest 2</p>
+            </div>
+            <div class="interest-item">
+                <p>Interest 3</p>
+            </div>
+            <!-- Add more interest-item elements as needed -->
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2>Get in Touch</h2>
+        <div class="contact-wrap">
+            <div class="contact-card">
+                <h3>Let's build something together</h3>
+                <p>Have a project, a question, or want to collaborate? Send a message or reach me directly through the contact methods below.</p>
+
+                <div class="contact-methods">
+                    <div class="contact-method">
+                        <strong>Email</strong>
+                        <div class="contact-line">
+                            <a href="mailto:youremail@example.com" id="mailtoLink">billzdev.com</a>
+                            <button id="copyEmailBtn" class="icon-btn" aria-label="Copy email"><i class="fas fa-copy"></i></button>
+                        </div>
+                    </div>
+
+                    <div class="contact-method">
+                        <strong>Phone</strong>
+                        <div class="contact-line">
+                            <a href="tel:+1234567890">+260 968040114</a>
+                        </div>
+                    </div>
+
+                    <div class="contact-method">
+                        <strong>Location</strong>
+                        <div class="contact-line">Lusaka, Zambia</div>
+                    </div>
+
+                    <div class="contact-method social">
+                        <strong>Social</strong>
+                        <div class="contact-line">
+                            <a href="https://github.com/Billzyo" class="social-link"><i class="fab fa-github"></i></a>
+                            <a href="https://www.linkedin.com/in/chungu-musaka-396b13269/" class="social-link"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-form-card">
+                <form id="contactForm" novalidate>
+                    <div class="form-row">
+                        <div class="field">
+                            <label for="name">Name</label>
+                            <input id="name" name="name" type="text" placeholder="Your name" required>
+                            <span class="error" data-for="name"></span>
+                        </div>
+                        <div class="field">
+                            <label for="email">Email</label>
+                            <input id="email" name="email" type="email" placeholder="you@example.com" required>
+                            <span class="error" data-for="email"></span>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label for="subject">Subject</label>
+                        <input id="subject" name="subject" type="text" placeholder="Subject (optional)">
+                        <span class="error" data-for="subject"></span>
+                    </div>
+
+                    <div class="field">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="6" placeholder="Write your message..." required></textarea>
+                        <span class="error" data-for="message"></span>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn-primary">Send Message</button>
+                        <button type="button" id="mailtoBtn" class="btn-ghost" title="Open email client">Send via Mail App</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Toast for status messages -->
+        <div id="toast" aria-live="polite" aria-atomic="true"></div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p><!-- Dynamic year will be inserted here --></p>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
