@@ -306,11 +306,18 @@ document.addEventListener('DOMContentLoaded', () => {
                     project.style.display = 'flex';
                     setTimeout(() => project.style.opacity = '1', 0);
                 } else {
-                    const category = project.querySelector('.project-category').textContent.toLowerCase();
-                    if (category.includes(filter.toLowerCase())) {
-                        project.style.display = 'flex';
-                        setTimeout(() => project.style.opacity = '1', 0);
+                    const categoryElement = project.querySelector('.project-category');
+                    if (categoryElement) {
+                        const category = categoryElement.textContent.toLowerCase();
+                        if (category.includes(filter.toLowerCase())) {
+                            project.style.display = 'flex';
+                            setTimeout(() => project.style.opacity = '1', 0);
+                        } else {
+                            project.style.opacity = '0';
+                            setTimeout(() => project.style.display = 'none', 300);
+                        }
                     } else {
+                        // If no category is found, hide the project
                         project.style.opacity = '0';
                         setTimeout(() => project.style.display = 'none', 300);
                     }
