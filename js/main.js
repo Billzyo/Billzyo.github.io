@@ -334,3 +334,81 @@ if (footerParagraph) {
     footerParagraph.innerHTML = 
         `© ${new Date().getFullYear()} Chungu Musaka. All rights reserved.`;
 }
+
+// --- GitHub Projects Auto Fetch ---
+function fetchGitHubProjects() {
+    const githubUsername = 'Billzyo';
+    const projectsGrid = document.querySelector('.projects-grid');
+    
+    if (!projectsGrid) {
+        console.error('Projects grid not found');
+        return;
+    }
+
+    // Show loading state
+    const loadingCard = document.createElement('div');
+    loadingCard.className = 'project-card loading';
+    loadingCard.innerHTML = '<div class="project-content"><h3>Loading GitHub Projects...</h3></div>';
+    projectsGrid.appendChild(loadingCard);
+
+    fetch(`https://api.github.com/users/${githubUsername}/repos?sort=updated&per_page=12`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(repos => {
+            // Remove loading card
+            loadingCard.remove();
+            
+            // Filter and sort repos
+            const filteredRepos = repos
+                .filter(repo => !repo.fork && !repo.private)
+                .sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
+
+            filteredRepos.forEach(repo => {
+                const card = document.createElement('article');
+                card.className = 'project-card';
+                
+                // Get the main topic as category
+                let category = repo.language || 'Other';
+                
+                card.innerHTML = `
+                    <div class="project-content">
+                        <span class="project-category">${category}</span>
+                        <h3>${repo.name}</h3>
+                        <p>${repo.description || 'No description provided.'}</p>
+                        <div class="project-tech-stack">
+                            ${repo.language ? `<span>${repo.language}</span>` : ''}
+                            ${repo.stargazers_count ? `<span>⭐ ${repo.stargazers_count}</span>` : ''}
+                            ${repo.forks_count ? `<span>🔗 ${repo.forks_count}</span>` : ''}
+                        </div>
+                    </div>
+                    <div class="project-links">
+                        <a href="${repo.html_url}" class="project-link" target="_blank" rel="noopener">View on GitHub →</a>
+                    </div>
+                `;
+                projectsGrid.appendChild(card);
+            });
+
+            if (filteredRepos.length === 0) {
+                const noProjectsCard = document.createElement('div');
+                noProjectsCard.className = 'project-card';
+                noProjectsCard.innerHTML = '<div class="project-content"><h3>No public repositories found</h3></div>';
+                projectsGrid.appendChild(noProjectsCard);
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching GitHub repos:', error);
+            loadingCard.innerHTML = `
+                <div class="project-content">
+                    <h3>Error loading projects</h3>
+                    <p>Could not fetch GitHub repositories. Please try again later.</p>
+                </div>
+            `;
+        });
+}
+
+// Call the function when DOM is ready
+document.addEventListener('DOMContentLoaded', fetchGitHubProjects);
