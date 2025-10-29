@@ -410,5 +410,32 @@ function fetchGitHubProjects() {
         });
 }
 
-// Call the function when DOM is ready
-document.addEventListener('DOMContentLoaded', fetchGitHubProjects);
+// Populate interests dynamically
+function populateInterests() {
+    const interests = [
+        'Coding and Open Source',
+        'IoT Projects',
+        'AI and Data Science',
+        'Web Development',
+        'Tech Blogging'
+    ];
+
+    const container = document.getElementById('interests-container');
+    if (!container) return;
+
+    // Clear any existing children
+    container.innerHTML = '';
+
+    interests.forEach(item => {
+        const div = document.createElement('div');
+        div.className = 'interest-item';
+        div.innerHTML = `<p>${item}</p>`;
+        container.appendChild(div);
+    });
+}
+
+// Call the functions when DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+    fetchGitHubProjects();
+    populateInterests();
+});
