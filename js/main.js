@@ -332,5 +332,5 @@ document.addEventListener('DOMContentLoaded', () => {
 const footerParagraph = document.querySelector('footer p');
 if (footerParagraph) {
     footerParagraph.innerHTML = 
-        `© ${new Date().getFullYear()} Your Name. All rights reserved.`;
+        `© ${new Date().getFullYear()} Chungu Musaka. All rights reserved.`;
 }
