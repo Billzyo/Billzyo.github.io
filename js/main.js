@@ -247,7 +247,12 @@ const observerOptions = {
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
+            // General visible class used by sections
             entry.target.classList.add('visible');
+            // For project cards, also add the 'reveal' class so CSS animation triggers
+            if (entry.target.classList && entry.target.classList.contains('project-card')) {
+                entry.target.classList.add('reveal');
+            }
             // Stop observing once visible
             observer.unobserve(entry.target);
         }
@@ -264,9 +269,8 @@ document.querySelectorAll('section').forEach(section => {
 document.addEventListener('DOMContentLoaded', () => {
     const projectCards = document.querySelectorAll('.project-card');
     
-    // Add reveal animation with stagger
+    // Add reveal animation with stagger (use observer to add 'reveal' when visible)
     projectCards.forEach((card, index) => {
-        card.classList.add('project-reveal');
         card.style.transitionDelay = `${index * 100}ms`;
         observer.observe(card);
     });
@@ -390,7 +394,27 @@ function fetchGitHubProjects() {
                     </div>
                 `;
                 projectsGrid.appendChild(card);
-            });
+
+                        // Set staggered transition delay and attach hover handlers for the dynamic card
+                        const index = projectsGrid.querySelectorAll('.project-card').length - 1;
+                        card.style.transitionDelay = `${index * 100}ms`;
+
+                        card.addEventListener('mousemove', (e) => {
+                            const rect = card.getBoundingClientRect();
+                            const x = e.clientX - rect.left;
+                            const y = e.clientY - rect.top;
+                            card.style.setProperty('--mouse-x', `${x}px`);
+                            card.style.setProperty('--mouse-y', `${y}px`);
+                        });
+
+                        card.addEventListener('mouseleave', () => {
+                            card.style.setProperty('--mouse-x', '0px');
+                            card.style.setProperty('--mouse-y', '0px');
+                        });
+
+                        // Observe the card so it gets revealed when scrolled into view
+                        observer.observe(card);
+                    });
 
             if (filteredRepos.length === 0) {
                 const noProjectsCard = document.createElement('div');
