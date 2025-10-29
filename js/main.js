@@ -226,16 +226,43 @@ if (contactForm) {
             return;
         }
 
-        // Simulate sending (replace with real request if available)
+        // Show sending state
+        const submitBtn = contactForm.querySelector('button[type="submit"]');
+        const originalBtnText = submitBtn.textContent;
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Sending...';
         showToast('Sending message...');
-        const payload = { name, email, subject, message };
-        console.log('Contact payload:', payload);
 
-        // Simulate network delay
-        setTimeout(() => {
+        // Prepare template parameters
+        const templateParams = {
+          from_name: name,
+          from_email: email,
+          subject: subject || 'No subject',
+          message: message,
+          date: new Date().toLocaleString(),
+          to_name: 'Chungu Musaka'
+        };
+
+        // Send the email using EmailJS
+        emailjs.send(
+            'service_5bo0te8',  // Email Service ID from EmailJS
+            'template_wx0fra6', // Email Template ID from EmailJS
+            templateParams
+        )
+        .then(function(response) {
+            console.log('SUCCESS!', response.status, response.text);
             contactForm.reset();
-            showToast('Message sent — thank you!', 4000);
-        }, 900);
+            showToast('Message sent successfully! Thank you.', 4000);
+        })
+        .catch(function(error) {
+            console.log('FAILED...', error);
+            showToast('Failed to send message. Please try again.', 4000);
+        })
+        .finally(function() {
+            // Reset button state
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalBtnText;
+        });
     });
 }
 
@@ -437,11 +464,11 @@ function fetchGitHubProjects() {
 // Populate interests dynamically
 function populateInterests() {
     const interests = [
-        'Coding and Open Source',
-        'IoT Projects',
-        'AI and Data Science',
-        'Web Development',
-        'Tech Blogging'
+        { name: 'Coding and Open Source', icon: 'fas fa-code' },
+        { name: 'IoT Projects', icon: 'fas fa-microchip' },
+        { name: 'AI and Data Science', icon: 'fas fa-brain' },
+        { name: 'Web Development', icon: 'fas fa-globe' },
+        { name: 'Tech Blogging', icon: 'fas fa-pen-fancy' }
     ];
 
     const container = document.getElementById('interests-container');
@@ -453,7 +480,12 @@ function populateInterests() {
     interests.forEach(item => {
         const div = document.createElement('div');
         div.className = 'interest-item';
-        div.innerHTML = `<p>${item}</p>`;
+        div.innerHTML = `
+            <div class="interest-icon">
+                <i class="${item.icon}"></i>
+            </div>
+            <p>${item.name}</p>
+        `;
         container.appendChild(div);
     });
 }
